@@ -42,8 +42,8 @@ services:
         CRT: wordpress.crt
         KEY: wordpress.key
     ports: 
-        - 33212:80
-        - 8080:443
+        - 80:80
+        - 443:443
     links: 
         - wordpress
     restart: always
