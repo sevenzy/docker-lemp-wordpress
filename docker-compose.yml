@@ -1,7 +1,7 @@
 version: '3.7'
 services: 
   mysql:
-    image: mariadb
+    image: sevenzy/mariadb:10.4
     container_name: wp-mariadb
     volumes: 
         - mariadb:/var/lib/mysql
