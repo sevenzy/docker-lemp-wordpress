@@ -31,14 +31,19 @@ services:
     networks: 
         - wp_network
   nginx: 
-    build: .
-    image: nginx:wp-php7.3
+    image: yukitoki/nginx-alpine-ssl
     container_name: wp-nginx
     volumes: 
         - wordpress:/var/www/html
-        - nginx-wp:/etc/nginx/conf.d
+        - $PWD/conf.d:/etc/nginx/conf.d
+        - $PWD/ssl:/etc/ssl/private
+        - $PWD/ssl:/etc/ssl/certs
+    environment: 
+        CRT: wordpress.crt
+        KEY: wordpress.key
     ports: 
-        - 8080:80
+        - 33212:80
+        - 8080:443
     links: 
         - wordpress
     restart: always
@@ -51,6 +56,4 @@ volumes:
     wordpress:
         external: true
     mariadb:
-        external: true
-    nginx-wp:
         external: true
